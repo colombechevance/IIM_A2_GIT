@@ -11,11 +11,13 @@ if(	isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
         $email = htmlspecialchars($_POST['email']);
         $password = htmlspecialchars($_POST['password']);
 
+        $password = sha1($password);
+
         if(isUsernameAvailable($db, $username)) {
                if(isEmailAvailable($db, $email)) {
                        userRegistration($db, $username, $email, $password);
                     } else {
-                       $error = "Email indisponible désolé"; }
+                       $error = "Email indisponibl"; }
     } else {
             $error = "Username indisponible"; }
 
@@ -24,11 +26,7 @@ if(	isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
 	header('Location: register.php');
 }
 
-function encrypt($pure_string, $encryption_key) {
-    $iv_size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
-    $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
-    $encrypted_string = mcrypt_encrypt(MCRYPT_BLOWFISH, $encryption_key, utf8_encode($pure_string), MCRYPT_MODE_ECB, $iv);
-    return $encrypted_string;
-}
+
+
 
 
