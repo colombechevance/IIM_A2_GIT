@@ -15,7 +15,7 @@ if(	isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
                if(isEmailAvailable($db, $email)) {
                        userRegistration($db, $username, $email, $password);
                     } else {
-                       $error = "Email indisponible"; }
+                       $error = "Email indisponible désolé"; }
     } else {
             $error = "Username indisponible"; }
 
@@ -23,3 +23,4 @@ if(	isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
 	$_SESSION['message'] = 'Erreur : Formulaire incomplet';
 	header('Location: register.php');
 }
+
